@@ -15,14 +15,16 @@ Following is an overview of TailorNet.(obtained from https://arxiv.org/pdf/2003.
 
 1.1 garment model aligned with SMPL
 SMPL represents the human body M(·) as a parametric function of pose(θ) and shape(β):  
-                        M(β, θ) = W(T(β, θ), J(β), θ,W)   
-                        T(β, θ) = T + Bs(β) + Bp(θ)  
-T: base mesh vertices T in a T-pose  
-W(·): skining function  
+       &emsp;&emsp;&emsp;                 M(β, θ) = W(T(β, θ), J(β), θ,W)   
+        &emsp;&emsp;&emsp;                T(β, θ) = T + Bs(β) + Bp(θ)  
+        &emsp;&emsp;&emsp;          T: base mesh vertices T in a T-pose  
+&emsp;&emsp;&emsp;              W(·): skining function  
 
 
 For a given style D, shape β and pose θ, TailorNet deforms clothing using the un-posed SMPL function T(θ, β):  
-T<sup>G</sup>(β, θ, D) = I T(β, θ) + D
+&emsp;&emsp;&emsp;   T<sup>G</sup>(β, θ, D) = I T(β, θ) + D
+then the final cloth can be obtained by following formula:
+&emsp;&emsp;&emsp;   G(β, θ, D) = W(T<sup>G</sup>(β, θ, D), J(β), θ,W)
 
   
 __2.What I have implemented?__    
