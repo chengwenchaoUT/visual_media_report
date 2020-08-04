@@ -24,15 +24,15 @@ class Trainer(object): Implements trainer class for TailorNet low frequency pred
             def onestep(self, inputs): one step during training
               
  
-hf_trainer.py
+hf_trainer.py  
 class HFTrainer(base_trainer.Trainer): Implements trainer class for TailorNet high frequency predictor, overloads some functions of base_trainer.Trainer class
           
 
-cannon_trainer.py
+cannon_trainer.py  
 class CannonTrainer(base_trainer.Trainer): Implements trainer class to predict deformations in canonical pose, overloads some functions of base_trainer.Trainer class
 
 
-local_config.py
+local_config.py  
 DATA_DIR: dataset root directory
 SMPL_PATH_MALE: paths to SMPL male model 
 SMPL_PATH_FEMALE: paths to SMPL female model 
@@ -42,11 +42,11 @@ POSE_SPLIT_FILE: path to train/test splits file
 VALID_THETA: Lists the indices of joints which affect the deformations of particular garment
 
 
-networks.py
+networks.py  
 class FullyConnected(nn.Module): fullly connected network class
 
 
-dataset.py
+dataset.py  
 def flip_theta(theta, batch=False): flip SMPL theta along y-z plane
 def get_Apose(): function of getting apose parameters
 class PivotsStyleShape(Dataset): dataset class for all style-shape datasets of pivots and the concate them
@@ -55,11 +55,11 @@ class OneStyleShapeHF(OneStyleShape): dataset class for one style-shape high fre
 class ShapeStyleInCannonPose(Dataset): dataset class for style-shape datasets in cannon poses
 
 
-SmplPath.py
+SmplPath.py  
 def get_hrmesh(v, f): get a high resolution version of given mesh
 class SmplPaths: get smpl data from given file path
 
 
-SMPLToGarment.py
+SMPLToGarment.py  
 class SMPLToGarment(object): SMPL class for garments
 class TorchSMPLToGarment(nn.Module): SMPL class for garments, a torch version
