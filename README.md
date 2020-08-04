@@ -13,7 +13,7 @@ Following is an overview of TailorNet.(obtained from https://arxiv.org/pdf/2003.
 ![image](https://github.com/chengwenchaoUT/visual_media_report/blob/master/imgs/TailorNet.png)  
 
 
-1.1 garment model aligned with SMPL
+1.1 garment model aligned with SMPL  
 SMPL represents the human body M(·) as a parametric function of pose(θ) and shape(β):  
        &emsp;&emsp;&emsp;                 M(β, θ) = W(T(β, θ), J(β), θ,W)   
         &emsp;&emsp;&emsp;                T(β, θ) = T + Bs(β) + Bp(θ)  
@@ -22,10 +22,19 @@ SMPL represents the human body M(·) as a parametric function of pose(θ) and sh
 
 
 For a given style D, shape β and pose θ, TailorNet deforms clothing using the un-posed SMPL function T(θ, β):  
-&emsp;&emsp;&emsp;   T<sup>G</sup>(β, θ, D) = I T(β, θ) + D
+&emsp;&emsp;&emsp;   T<sup>G</sup>(β, θ, D) = I T(β, θ) + D  
 then the final cloth can be obtained by following formula:  
-&emsp;&emsp;&emsp;   G(β, θ, D) = W(T<sup>G</sup>(β, θ, D), J(β), θ,W)
+&emsp;&emsp;&emsp;   G(β, θ, D) = W(T<sup>G</sup>(β, θ, D), J(β), θ,W)  
 
+1.2 Un-posing Garment Deformation  
+Given a set of simulated garments G for a given pose θ and shape β, TailorNet disentangles non-rigid deformation
+from articulation by un-posing:    
+ &emsp;&emsp;&emsp;    D = W<sup>−1</sup>(G, J(β), θ,W) − I T(β, θ)  
+  &emsp;&emsp;&emsp;where W<sup>−1</sup>() is inverse function of W()  
+  
+Non-rigid deformation D in the unposed space is affected by body pose, shape and the garment style (size, sleeve length, fit). Hence, TailorNet proposes to learn deformation D as a function of shape β, pose θ and style γ,
+i.e. D(β, θ, γ) : R<sup>|θ|</sup> × R<sup>|β|</sup> × R<sup>|γ|</sup> → R<sup>m×3</sup>.   
+  
   
 __2.What I have implemented?__    
   
