@@ -65,6 +65,9 @@ class SMPLToGarment(object): SMPL class for garments
 class TorchSMPLToGarment(nn.Module): SMPL class for garments, a torch version  
   
   
+  
+  
+  
 3. How to train the model?  
 step 1: Register and download SMPL models(https://smpl.is.tue.mpg.de/en)  
 step 2: Download dataset for TailorNet(https://github.com/zycliao/TailorNet_dataset)  
