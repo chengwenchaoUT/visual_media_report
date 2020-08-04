@@ -23,7 +23,7 @@ SMPL represents the human body M(·) as a parametric function of pose(θ) and sh
 
 For a given style D, shape β and pose θ, TailorNet deforms clothing using the un-posed SMPL function T(θ, β):  
 &emsp;&emsp;&emsp;   T<sup>G</sup>(β, θ, D) = I T(β, θ) + D
-then the final cloth can be obtained by following formula:
+then the final cloth can be obtained by following formula:  
 &emsp;&emsp;&emsp;   G(β, θ, D) = W(T<sup>G</sup>(β, θ, D), J(β), θ,W)
 
   
