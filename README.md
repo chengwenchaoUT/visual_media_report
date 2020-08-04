@@ -4,7 +4,7 @@ visual media report
 
 the paper I selected:  "TailorNet: Predicting Clothing in 3D as a Function of Human Pose, Shape and Garment Style", CVPR2020 (https://arxiv.org/pdf/2003.04583.pdf)  
 
-1. Why this paper is important?    
+__1. Why this paper is important?__    
 This paper presents TailorNet, a neural model which predicts deformation in 3D as a function of three factors: pose, shape and style. Previous models either model deformation due to pose for a fixed shape, shape and pose for a fixed style, or style for a fixed pose. TailorNet models the effects of pose, shape and style jointly. Futhermore, existing joint models for pose and shape often produce over-smooth results(even for a fixed style). TailorNet's hypothesis is that combinations  of examples smooth out high frequency components such as fine-wrinkles, which makes learning the three factors jointly hard. At the heart of TailorNet is a decomposition of deformation into a high-frequency and a low frequency component.    
 The low-frequency component is predicted from pose, shape and style parameters with an MLP network. The high-frequency component is predicted with a mixture of shape-style specific pose models.The weights of the mixture are computed with a narrow bandwidth kernel to guarantee that only predictions with similar high-frequency patterns are combined. The style variation is obtained by computing, in a canonical pose, a subspace of deformation, which satisfies physical constraints such as inter-penetration, and draping on the body.    
 
@@ -15,11 +15,17 @@ Following is an overview of TailorNet.(obtained from https://arxiv.org/pdf/2003.
 
 1.1 garment model aligned with SMPL
 SMPL represents the human body M(·) as a parametric function of pose(θ) and shape(β):  
-                        M(β, θ) = W(T(β, θ), J(β), θ,W) 
-                        T(β, θ) = T + Bs(β) + Bp(θ)
+                        M(β, θ) = W(T(β, θ), J(β), θ,W)   
+                        T(β, θ) = T + Bs(β) + Bp(θ)  
+T: base mesh vertices T in a T-pose  
+W(·): skining function  
+
+
+For a given style D, shape β and pose θ, TailorNet deforms clothing using the un-posed SMPL function T(θ, β):  
+T<sup>G</sup>(β, θ, D) = I T(β, θ) + D
 
   
-2.What I have implemented?  
+__2.What I have implemented?__    
   
 base_trainer.py  
 class Trainer(object): Implements trainer class for TailorNet low frequency predictor  
@@ -74,7 +80,7 @@ class TorchSMPLToGarment(nn.Module): SMPL class for garments, a torch version
   
   
   
-3. How to train the model?  
+__3. How to train the model?__    
 step 1: Register and download SMPL models(https://smpl.is.tue.mpg.de/en)  
 step 2: Download dataset for TailorNet(https://github.com/zycliao/TailorNet_dataset)  
 step 3: Run base_trainer.py, hf_trainer.py and cannon_trainer.py  
